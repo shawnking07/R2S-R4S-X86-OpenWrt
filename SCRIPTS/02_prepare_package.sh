@@ -24,9 +24,10 @@ wget -P target/linux/generic/pending-5.4 https://github.com/immortalwrt/immortal
 # Patch jsonc
 patch -p1 < ../PATCH/new/package/use_json_object_new_int64.patch
 # Patch dnsmasq
-patch -p1 < ../PATCH/new/package/dnsmasq-add-filter-aaaa-option.patch
-patch -p1 < ../PATCH/new/package/luci-add-filter-aaaa-option.patch
-cp -f ../PATCH/new/package/900-add-filter-aaaa-option.patch ./package/network/services/dnsmasq/patches/900-add-filter-aaaa-option.patch
+# AAAA filter
+# patch -p1 < ../PATCH/new/package/dnsmasq-add-filter-aaaa-option.patch
+# patch -p1 < ../PATCH/new/package/luci-add-filter-aaaa-option.patch
+# cp -f ../PATCH/new/package/900-add-filter-aaaa-option.patch ./package/network/services/dnsmasq/patches/900-add-filter-aaaa-option.patch
 
 ### Fullcone-NAT 部分 ###
 # Patch Kernel 以解决 FullCone 冲突
@@ -111,8 +112,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autorebo
 svn co https://github.com/ryohuang/slim-wrt/trunk/slimapps/application/luci-app-boostupnp package/new/luci-app-boostupnp
 sed -i 's,https://api.ipify.org,http://members.3322.org/dyndns/getip,g' ./package/new/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
 # ChinaDNS
-git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+# git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
+# svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # 内存压缩
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/2840.patch | patch -p1
 wget -O- https://github.com/NoTengoBattery/openwrt/commit/40f1d5.patch | patch -p1
@@ -165,8 +166,8 @@ popd
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # Moschinadns
-svn co https://github.com/QiuSimons/openwrt-packages/branches/main/mos-chinadns package/new/mos-chinadns
-svn co https://github.com/QiuSimons/openwrt-packages/branches/main/luci-app-moschinadns package/new/luci-app-moschinadns
+# svn co https://github.com/QiuSimons/openwrt-packages/branches/main/mos-chinadns package/new/mos-chinadns
+# svn co https://github.com/QiuSimons/openwrt-packages/branches/main/luci-app-moschinadns package/new/luci-app-moschinadns
 # Mosdns
 svn co https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
 # 流量监管
@@ -292,9 +293,13 @@ rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
 # Lets Fuck
 mkdir package/base-files/files/usr/bin
 cp -f ../PATCH/new/script/fuck package/base-files/files/usr/bin/fuck
-cp -f ../PATCH/new/script/chinadnslist package/base-files/files/usr/bin/chinadnslist
+# cp -f ../PATCH/new/script/chinadnslist package/base-files/files/usr/bin/chinadnslist
 # 最大连接数
 sed -i 's/16384/65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
+# default ip address
+sed -i 's/192\.168\.1\.1/192.168.98.1/g' package/base-files/files/bin/config_generate
+
 # 生成默认配置及缓存
 rm -rf .config
 
