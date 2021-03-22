@@ -123,9 +123,9 @@ jobs:
         gzip -d *.gz && exit 0
         gzip --best *.img
         ls -Ahl
-        sha256sum openwrt*r2s* | tee R2S-GC404-$(date +%Y-%m-%d)-21.02.sha256sum
-        zip R2S-GC404-$(date +%Y-%m-%d)-21.02-ext4.zip *r2s*ext4*
-        zip R2S-GC404-$(date +%Y-%m-%d)-21.02-sfs.zip *r2s*squashfs*
+        sha256sum openwrt*r2s* | tee R2S-sk07-$(date +%Y-%m-%d)-21.02.sha256sum
+        zip R2S-sk07-$(date +%Y-%m-%d)-21.02-ext4.zip *r2s*ext4*
+        zip R2S-sk07-$(date +%Y-%m-%d)-21.02-sfs.zip *r2s*squashfs*
         ls -Ahl
     - name: Upload artifact
       uses: actions/upload-artifact@main
