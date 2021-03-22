@@ -301,7 +301,7 @@ cp -f ../PATCH/new/script/fuck package/base-files/files/usr/bin/fuck
 sed -i 's/16384/65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # default ip address
-sed -i 's/192\.168\.1\.1/192.168.98.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.98.1/g' package/base-files/files/bin/config_generate
 
 # 生成默认配置及缓存
 rm -rf .config
