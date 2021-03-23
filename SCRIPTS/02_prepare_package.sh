@@ -113,8 +113,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autorebo
 svn co https://github.com/ryohuang/slim-wrt/trunk/slimapps/application/luci-app-boostupnp package/new/luci-app-boostupnp
 sed -i 's,https://api.ipify.org,http://members.3322.org/dyndns/getip,g' ./package/new/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
 # ChinaDNS
-# git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
-# svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # 内存压缩
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/2840.patch | patch -p1
 wget -O- https://github.com/NoTengoBattery/openwrt/commit/40f1d5.patch | patch -p1
