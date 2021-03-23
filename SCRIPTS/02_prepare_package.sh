@@ -292,6 +292,12 @@ bash move_2_services.sh
 popd
 rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
 
+# 磁盘管理
+mkdir -p package/luci-app-diskman && \
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
+mkdir -p package/parted && \
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O package/parted/Makefile
+
 
 ### 最后的收尾工作 ###
 # Lets Fuck
