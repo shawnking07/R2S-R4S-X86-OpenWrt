@@ -79,7 +79,7 @@ rm -rf ./feeds/packages/lang/node-yarn
 svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-yarn feeds/packages/lang/node-yarn
 ln -sf ../../../feeds/packages/lang/node-yarn ./package/feeds/packages/node-yarn
 # R8168驱动
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/r8168 package/new/r8168
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
 patch -p1 < ../PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # UPX 可执行软件压缩
 sed -i '/patchelf pkgconf/i\tools-y += ucl upx' ./tools/Makefile
@@ -220,7 +220,7 @@ mkdir package/new/smartdns
 wget -P package/new/smartdns/ https://github.com/HiGarfield/lede-17.01.4-Mod/raw/master/package/extra/smartdns/Makefile
 sed -i 's,files/etc/config,$(PKG_BUILD_DIR)/package/openwrt/files/etc/config,g' ./package/new/smartdns/Makefile
 rm -rf ./feeds/luci/applications/luci-app-smartdns
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06/package/ntlf9t/luci-app-smartdns package/new/luci-app-smartdns
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/ntlf9t/luci-app-smartdns package/new/luci-app-smartdns
 # ShadowsocksR Plus+
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 rm -rf ./package/lean/luci-app-ssr-plus/po/zh_Hans
@@ -254,10 +254,10 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/le
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 svn co https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/lean/shadowsocks-rust
 # 订阅转换
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/subconverter package/new/subconverter
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/jpcre2 package/new/jpcre2
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rapidjson package/new/rapidjson
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/duktape package/new/duktape
+svn co https://github.com/immortalwrt/packages/trunk/net/subconverter package/new/subconverter
+svn co https://github.com/immortalwrt/packages/trunk/libs/jpcre2 package/new/jpcre2
+svn co https://github.com/immortalwrt/packages/trunk/libs/rapidjson package/new/rapidjson
+svn co https://github.com/immortalwrt/packages/trunk/libs/duktape package/new/duktape
 # 网易云音乐解锁
 git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/UnblockNeteaseMusic
 # USB 打印机
