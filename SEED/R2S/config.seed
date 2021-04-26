@@ -204,30 +204,16 @@ CONFIG_LIBCURL_OPENSSL=y
 #CONFIG_DOCKER_STO_EXT4=y
 
 ### Video Support ### （实验性,有需要的删掉下面的注释)
-#CONFIG_PACKAGE_kmod-backlight=y
-#CONFIG_PACKAGE_kmod-drm=y
-#CONFIG_PACKAGE_kmod-drm-kms-helper=y
-#CONFIG_PACKAGE_kmod-drm-rockchip=y
-#CONFIG_PACKAGE_kmod-fb=y
-#CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
-#CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
-#CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
-#CONFIG_PACKAGE_kmod-fb-sys-fops=y
-#CONFIG_PACKAGE_kmod-fb-sys-ram=y
-#CONFIG_PACKAGE_kmod-gpu-lima=y
-#CONFIG_PACKAGE_kmod-multimedia-input=y
+CONFIG_PACKAGE_kmod-backlight=y
+CONFIG_PACKAGE_kmod-drm=y
+CONFIG_PACKAGE_kmod-drm-kms-helper=y
+CONFIG_PACKAGE_kmod-drm-rockchip=y
+CONFIG_PACKAGE_kmod-fb=y
+CONFIG_PACKAGE_kmod-fb-cfb-copyarea=y
+CONFIG_PACKAGE_kmod-fb-cfb-fillrect=y
+CONFIG_PACKAGE_kmod-fb-cfb-imgblt=y
+CONFIG_PACKAGE_kmod-fb-sys-fops=y
+CONFIG_PACKAGE_kmod-fb-sys-ram=y
+CONFIG_PACKAGE_kmod-gpu-lima=y
+CONFIG_PACKAGE_kmod-multimedia-input=y
 
-## Aria2 ##
-CONFIG_PACKAGE_luci-app-aria2=y
-CONFIG_PACKAGE_aria2=y
-CONFIG_PACKAGE_luci-i18n-aria2-zh-cn=y
-CONFIG_PACKAGE_ariang=y
-
-#
-# Aria2 Configuration
-#
-CONFIG_ARIA2_OPENSSL=y
-CONFIG_ARIA2_NOXML=y
-CONFIG_ARIA2_BITTORRENT=y
-CONFIG_ARIA2_WEBSOCKET=y
-# end of Aria2 Configuration
