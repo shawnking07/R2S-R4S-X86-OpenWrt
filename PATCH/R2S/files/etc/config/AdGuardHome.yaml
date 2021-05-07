@@ -41,8 +41,7 @@ dns:
   - version.bind
   - id.server
   - hostname.bind
-  - '*.lan'
-  cache_size: 4194304
+  cache_size: 0
   cache_ttl_min: 0
   cache_ttl_max: 0
   bogus_nxdomain: []
@@ -56,9 +55,6 @@ dns:
   parental_enabled: false
   safesearch_enabled: false
   safebrowsing_enabled: false
-  safebrowsing_cache_size: 1048576
-  safesearch_cache_size: 1048576
-  parental_cache_size: 1048576
   cache_time: 30
   rewrites: []
   blocked_services: []
