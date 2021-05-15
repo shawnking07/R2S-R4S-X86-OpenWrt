@@ -122,9 +122,9 @@ jobs:
         gzip -d *.gz && exit 0
         gzip --best *.img
         ls -Ahl
-        sha256sum openwrt*x86* | tee X86-GC404-$(date +%Y-%m-%d)-21.02.sha256sum
-        zip X86-GC404-$(date +%Y-%m-%d)-21.02-ext4.zip *ext4-combined*
-        zip X86-GC404-$(date +%Y-%m-%d)-21.02-sfs.zip *squashfs-combined*
+        sha256sum openwrt*x86* | tee X86-sk07-$(date +%Y-%m-%d)-21.02.sha256sum
+        zip X86-sk07-$(date +%Y-%m-%d)-21.02-ext4.zip *ext4-combined*
+        zip X86-sk07-$(date +%Y-%m-%d)-21.02-sfs.zip *squashfs-combined*
         ls -Ahl
     - name: Upload artifact
       uses: actions/upload-artifact@main
