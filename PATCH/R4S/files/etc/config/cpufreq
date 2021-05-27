@@ -6,3 +6,4 @@ config settings 'cpufreq'
 	option governor4 'schedutil'
 	option minfreq4 '816000'
 	option maxfreq4 '2208000'
+

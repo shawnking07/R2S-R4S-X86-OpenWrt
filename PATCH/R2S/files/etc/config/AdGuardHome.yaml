@@ -76,6 +76,7 @@ tls:
   private_key_path: ""
 filters:
 - enabled: true
+<<<<<<< HEAD
   url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
   name: AdGuard Simplified Domain Names filter
   id: 1
@@ -89,6 +90,9 @@ filters:
   id: 1614321973
 - enabled: true
   url: https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
+=======
+  url: https://cdn.jsdelivr.net/gh/hoshsadiq/adblock-nocoin-list@master/nocoin.txt
+>>>>>>> upstream/master
   name: NoCoin Filter List
   id: 1614321974
 - enabled: true
@@ -100,6 +104,7 @@ filters:
   name: EasyListCN
   id: 1615106061
 - enabled: true
+<<<<<<< HEAD
   url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt
   name: 卡饭乘风ad
   id: 1615106064
@@ -111,6 +116,23 @@ filters:
   url: https://easylist-downloads.adblockplus.org/easyprivacy.txt
   name: EasyPrivacy
   id: 1615663795
+=======
+  url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
+  name: 乘风 广告过滤规则
+  id: 1600600707
+- enabled: true
+  url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt
+  name: 乘风 视频广告过滤规则
+  id: 1600600708
+- enabled: true
+  url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-ublock.txt
+  name: CJX's uBlock list
+  id: 1600600709
+- enabled: true
+  url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-annoyance.txt
+  name: CJX's Annoyance List
+  id: 1600600710
+>>>>>>> upstream/master
 - enabled: true
   url: http://easylist-downloads.adblockplus.org/easylistchina.txt
   name: EasyListChina
