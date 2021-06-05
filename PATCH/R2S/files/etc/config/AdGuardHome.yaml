@@ -80,14 +80,6 @@ filters:
   name: NoCoin Filter List
   id: 1614321974
 - enabled: true
-  url: https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts
-  name: The Big List of Hacked Malware Web Sites
-  id: 1614321977
-- enabled: true
-  url: https://easylist-downloads.adblockplus.org/easylistchina.txt
-  name: EasyListCN
-  id: 1615106061
-- enabled: true
   url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
   name: 乘风 广告过滤规则
   id: 1600600707
