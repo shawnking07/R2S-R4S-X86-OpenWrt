@@ -84,8 +84,8 @@ CONFIG_PACKAGE_luci-proto-ipv6=y
 CONFIG_PACKAGE_luci-proto-ppp=y
 
 ### APPLICATION ###
-#CONFIG_PACKAGE_luci-app-adguardhome=y
-#CONFIG_PACKAGE_adguardhome=y
+CONFIG_PACKAGE_luci-app-adguardhome=y
+CONFIG_PACKAGE_adguardhome=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_luci-app-autoreboot=y
@@ -105,6 +105,7 @@ CONFIG_PACKAGE_frps=y
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y
 #CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-netdata=y
+CONFIG_PACKAGE_luci-app-oaf=y
 CONFIG_PACKAGE_luci-app-openclash=y
 CONFIG_PACKAGE_luci-app-opkg=y
 #CONFIG_PACKAGE_luci-app-qbittorrent=y
