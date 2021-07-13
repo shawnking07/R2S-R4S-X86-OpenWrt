@@ -106,8 +106,6 @@ rm -rf ./feeds/packages/net/adguardhome
 svn co https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
 sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
 sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
-# ADBP
-git clone --depth 1 https://github.com/small-5/luci-app-adblock-plus.git package/new/luci-app-adblock-plus
 # Argon 主题
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
 #wget -P ./package/new/luci-theme-argon/htdocs/luci-static/argon/css/ -N https://github.com/msylgj/luci-theme-argon/raw/patch-1/htdocs/luci-static/argon/css/dark.css
@@ -158,7 +156,7 @@ ln -sf ../../../feeds/luci/applications/luci-app-aliddns ./package/feeds/luci/lu
 # Docker 容器（会导致 OpenWrt 出现 UDP 转发问题，慎用）
 sed -i 's/+docker/+docker \\\n\t+dockerd/g' ./feeds/luci/applications/luci-app-dockerman/Makefile
 # Dnsfilter
-#git clone --depth 1 https://github.com/garypang13/luci-app-dnsfilter.git package/new/luci-app-dnsfilter
+git clone --depth 1 https://github.com/garypang13/luci-app-dnsfilter.git package/new/luci-app-dnsfilter
 # Dnsproxy
 svn co https://github.com/immortalwrt/packages/trunk/net/dnsproxy feeds/packages/net/dnsproxy
 ln -sf ../../../feeds/packages/net/dnsproxy ./package/feeds/packages/dnsproxy
@@ -219,6 +217,7 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall pac
 sed -i 's,default n,default y,g' package/new/luci-app-passwall/Makefile
 sed -i '/V2ray:v2ray/d' package/new/luci-app-passwall/Makefile
 sed -i '/plugin:v2ray/d' package/new/luci-app-passwall/Makefile
+sed -i '/Proxy:naive/d' package/new/luci-app-passwall/Makefile
 wget -P package/new/luci-app-passwall/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
 chmod -R 755 ./package/new/luci-app-passwall/move_2_services.sh
 pushd package/new/luci-app-passwall
@@ -277,7 +276,7 @@ svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/
 rm -rf ./package/lean/luci-app-ssr-plus/po/zh_Hans
 pushd package/lean
 #wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
-wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
+#wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
 popd
@@ -286,10 +285,15 @@ sed -i 's,default n,default y,g' Makefile
 sed -i 's,Xray:xray ,Xray:xray-core ,g' Makefile
 sed -i '/V2ray:v2ray/d' Makefile
 sed -i '/plugin:v2ray/d' Makefile
+sed -i '/Proxy:naive/d' Makefile
 sed -i '/result.encrypt_method/a\result.fast_open = "1"' root/usr/share/shadowsocksr/subscribe.lua
 sed -i 's,ispip.clang.cn/all_cn,cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute,' root/etc/init.d/shadowsocksr
 sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' root/etc/init.d/shadowsocksr
 sed -i '/Clang.CN.CIDR/a\o:value("https://cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' luasrc/model/cbi/shadowsocksr/advanced.lua
+
+sed -i 's/443 -j RETURN/443 -j DROP/' root/usr/bin/ssr-rules
+sed -i 's/80 -j RETURN/80 -j DROP/' root/usr/bin/ssr-rules
+
 popd
 # 订阅转换
 svn co https://github.com/immortalwrt/packages/trunk/net/subconverter feeds/packages/net/subconverter
