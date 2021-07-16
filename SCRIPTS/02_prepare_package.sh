@@ -27,6 +27,8 @@ rm -rf ./toolchain/gcc
 svn co https://github.com/Ansuel/openwrt/branches/gcc-11/toolchain/gcc toolchain/gcc
 rm -rf ./package/libs/elfutils
 svn co https://github.com/neheb/openwrt/branches/elf/package/libs/elfutils package/libs/elfutils
+rm -rf ./feeds/packages/libs/dtc
+svn co https://github.com/openwrt/packages/trunk/libs/dtc feeds/packages/libs/dtc
 
 # MPTCP
 wget -P target/linux/generic/hack-5.4/ https://github.com/Ysurac/openmptcprouter/raw/develop/root/target/linux/generic/hack-5.4/690-mptcp_trunk.patch
