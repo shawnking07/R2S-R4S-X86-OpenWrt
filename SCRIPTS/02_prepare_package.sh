@@ -30,8 +30,6 @@ rm -rf ./package/libs/elfutils
 svn co https://github.com/neheb/openwrt/branches/elf/package/libs/elfutils package/libs/elfutils
 rm -rf ./feeds/packages/libs/dtc
 svn co https://github.com/openwrt/packages/trunk/libs/dtc feeds/packages/libs/dtc
-rm -rf ./tools/cmake
-svn co https://github.com/openwrt/openwrt/trunk/tools/cmake tools/cmake
 
 # MPTCP
 wget -P target/linux/generic/hack-5.4/ https://github.com/Ysurac/openmptcprouter/raw/develop/root/target/linux/generic/hack-5.4/690-mptcp_trunk.patch
