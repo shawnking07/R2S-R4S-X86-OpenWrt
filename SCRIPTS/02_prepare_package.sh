@@ -22,13 +22,16 @@ sed -i '/unshift/d' scripts/download.pl
 sed -i '/mirror02/d' scripts/download.pl
 echo "net.netfilter.nf_conntrack_helper = 1" >> ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
-# 临时补丁
+# GCC11
 rm -rf ./toolchain/gcc
 svn co https://github.com/Ansuel/openwrt/branches/gcc-11/toolchain/gcc toolchain/gcc
+#svn co https://github.com/openwrt/openwrt/trunk/toolchain/gcc toolchain/gcc
 rm -rf ./package/libs/elfutils
 svn co https://github.com/neheb/openwrt/branches/elf/package/libs/elfutils package/libs/elfutils
 rm -rf ./feeds/packages/libs/dtc
 svn co https://github.com/openwrt/packages/trunk/libs/dtc feeds/packages/libs/dtc
+rm -rf ./tools/cmake
+svn co https://github.com/openwrt/openwrt/trunk/tools/cmake tools/cmake
 
 # MPTCP
 wget -P target/linux/generic/hack-5.4/ https://github.com/Ysurac/openmptcprouter/raw/develop/root/target/linux/generic/hack-5.4/690-mptcp_trunk.patch
