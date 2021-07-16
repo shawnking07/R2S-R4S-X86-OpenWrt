@@ -22,13 +22,21 @@ sed -i '/unshift/d' scripts/download.pl
 sed -i '/mirror02/d' scripts/download.pl
 echo "net.netfilter.nf_conntrack_helper = 1" >> ./package/kernel/linux/files/sysctl-nf-conntrack.conf
 
-# 临时补丁
+# GCC11
 rm -rf ./toolchain/gcc
 svn co https://github.com/Ansuel/openwrt/branches/gcc-11/toolchain/gcc toolchain/gcc
+#svn co https://github.com/openwrt/openwrt/trunk/toolchain/gcc toolchain/gcc
+rm -rf ./package/libs/elfutils
+svn co https://github.com/neheb/openwrt/branches/elf/package/libs/elfutils package/libs/elfutils
+rm -rf ./feeds/packages/libs/dtc
+svn co https://github.com/openwrt/packages/trunk/libs/dtc feeds/packages/libs/dtc
 
 # MPTCP
 wget -P target/linux/generic/hack-5.4/ https://github.com/Ysurac/openmptcprouter/raw/develop/root/target/linux/generic/hack-5.4/690-mptcp_trunk.patch
 wget -P target/linux/generic/hack-5.4/ https://github.com/Ysurac/openmptcprouter/raw/develop/root/target/linux/generic/hack-5.4/998-ndpi-netfilter.patch
+echo '
+CONFIG_CRYPTO_SHA256=y
+' >> ./target/linux/generic/config-5.4
 
 # BBRv2
 wget -P target/linux/generic/hack-5.4/ https://github.com/Ysurac/openmptcprouter/raw/develop/root/target/linux/generic/hack-5.4/692-tcp_nanqinlang.patch
@@ -317,8 +325,12 @@ ln -sf ../../../feeds/packages/libs/jpcre2 ./package/feeds/packages/jpcre2
 svn co https://github.com/immortalwrt/packages/trunk/libs/rapidjson feeds/packages/libs/rapidjson
 ln -sf ../../../feeds/packages/libs/rapidjson ./package/feeds/packages/rapidjson
 svn co https://github.com/immortalwrt/packages/trunk/libs/libcron feeds/packages/libs/libcron
+mkdir feeds/packages/libs/libcron/patches
+wget -P feeds/packages/libs/libcron/patches/ https://github.com/QiuSimons/libcron/commit/432fb6f.patch
 ln -sf ../../../feeds/packages/libs/libcron ./package/feeds/packages/libcron
 svn co https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packages/libs/quickjspp
+mkdir feeds/packages/libs/quickjspp/patches
+wget -P feeds/packages/libs/quickjspp/patches/ https://github.com/QiuSimons/quickjspp/commit/4cb20c1.patch
 ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
 # 网易云音乐解锁
 git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/UnblockNeteaseMusic
@@ -367,11 +379,6 @@ wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Mak
 
 # 翻译及部分功能优化
 svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/addition-trans-zh package/lean/lean-translate
-
-# MPTCP
-echo '
-CONFIG_CRYPTO_SHA256=y
-' >> ./target/linux/generic/config-5.4
 
 ### 最后的收尾工作 ###
 # Lets Fuck
