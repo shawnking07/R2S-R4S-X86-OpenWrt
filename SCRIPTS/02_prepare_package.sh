@@ -155,13 +155,13 @@ git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git pac
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # 内存压缩
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/2840.patch | patch -p1
-wget -O- https://github.com/NoTengoBattery/openwrt/commit/40f1d5.patch | patch -p1
-wget -O- https://github.com/NoTengoBattery/openwrt/commit/a83a0b.patch | patch -p1
-wget -O- https://github.com/NoTengoBattery/openwrt/commit/6d5fb4.patch | patch -p1
-mkdir ./package/new
-cp -rf ../NoTengoBattery/feeds/luci/applications/luci-app-compressed-memory ./package/new/luci-app-compressed-memory
-sed -i 's,include ../..,include $(TOPDIR)/feeds/luci,g' ./package/new/luci-app-compressed-memory/Makefile
-cp -rf ../NoTengoBattery/package/system/compressed-memory ./package/system/compressed-memory
+#wget -O- https://github.com/NoTengoBattery/openwrt/commit/40f1d5.patch | patch -p1
+#wget -O- https://github.com/NoTengoBattery/openwrt/commit/a83a0b.patch | patch -p1
+#wget -O- https://github.com/NoTengoBattery/openwrt/commit/6d5fb4.patch | patch -p1
+#mkdir ./package/new
+#cp -rf ../NoTengoBattery/feeds/luci/applications/luci-app-compressed-memory ./package/new/luci-app-compressed-memory
+#sed -i 's,include ../..,include $(TOPDIR)/feeds/luci,g' ./package/new/luci-app-compressed-memory/Makefile
+#cp -rf ../NoTengoBattery/package/system/compressed-memory ./package/system/compressed-memory
 # CPU 控制相关
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
@@ -176,10 +176,10 @@ ln -sf ../../../feeds/packages/utils/cpulimit ./package/feeds/packages/cpulimit
 #rm -rf ./feeds/luci/applications/luci-app-ddns
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
+#svn co https://github.com/openwrt/packages/branches/openwrt-18.06/net/ddns-scripts feeds/packages/net/ddns-scripts
+#svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
 git clone --depth 1 https://github.com/small-5/ddns-scripts-dnspod package/lean/ddns-scripts_dnspod
 git clone --depth 1 https://github.com/small-5/ddns-scripts-aliyun package/lean/ddns-scripts_aliyun
-svn co https://github.com/openwrt/packages/branches/openwrt-18.06/net/ddns-scripts feeds/packages/net/ddns-scripts
-svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
 svn co https://github.com/QiuSimons/OpenWrt_luci-app/trunk/others/luci-app-tencentddns package/lean/luci-app-tencentddns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliddns feeds/luci/applications/luci-app-aliddns
 ln -sf ../../../feeds/luci/applications/luci-app-aliddns ./package/feeds/luci/luci-app-aliddns
@@ -208,13 +208,13 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vp
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper package/lean/ipv6-helper
 # 京东签到 By Jerrykuku
 git clone --depth 1 https://github.com/jerrykuku/node-request.git package/new/node-request
-svn co -r131 https://github.com/jerrykuku/luci-app-jd-dailybonus/trunk package/new/luci-app-jd-dailybonus
-pushd package/new/luci-app-jd-dailybonus
-sed -i 's,wget-ssl,wget,g' root/usr/share/jd-dailybonus/newapp.sh luasrc/controller/jd-dailybonus.lua
-sed -i 's,* sh,*,g' root/usr/share/jd-dailybonus/newapp.sh
-popd
-rm -rf ./package/new/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-wget -P package/new/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
+git clone --depth 1 https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/new/luci-app-jd-dailybonus
+#pushd package/new/luci-app-jd-dailybonus
+#sed -i 's,wget-ssl,wget,g' root/usr/share/jd-dailybonus/newapp.sh luasrc/controller/jd-dailybonus.lua
+#sed -i 's,* sh,*,g' root/usr/share/jd-dailybonus/newapp.sh
+#popd
+#rm -rf ./package/new/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
+#wget -P package/new/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
 # 回滚通用即插即用
 #rm -rf ./feeds/packages/net/miniupnpd
 #svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
