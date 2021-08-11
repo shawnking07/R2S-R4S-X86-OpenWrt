@@ -19,8 +19,15 @@ CONFIG_HW_RANDOM_ROCKCHIP=y
 ' >> ./target/linux/rockchip/armv8/config-5.4
 
 # CacULE
+sed -i '/CONFIG_NR_CPUS/d' ./target/linux/rockchip/armv8/config-5.4
 echo '
 CONFIG_NR_CPUS=6
+' >> ./target/linux/rockchip/armv8/config-5.4
+
+# UKSM
+echo '
+CONFIG_KSM=y
+CONFIG_UKSM=y
 ' >> ./target/linux/rockchip/armv8/config-5.4
 
 # IRQ 调优
