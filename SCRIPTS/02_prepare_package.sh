@@ -131,6 +131,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-p
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/lean/adbyby
 # 广告过滤 AdGuard
 cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
+sed -i 's/START=95/START=98/g' ./package/new/luci-app-adguardhome/root/etc/init.d/AdGuardHome
 rm -rf ./feeds/packages/net/adguardhome
 svn co https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
 sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
@@ -178,6 +179,7 @@ ln -sf ../../../feeds/packages/utils/cpulimit ./package/feeds/packages/cpulimit
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 #svn co https://github.com/openwrt/packages/branches/openwrt-18.06/net/ddns-scripts feeds/packages/net/ddns-scripts
 #svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
+sed -i 's/START=95/START=99/g' ./feeds/packages/net/ddns-scripts/files/ddns.init
 git clone --depth 1 https://github.com/small-5/ddns-scripts-dnspod package/lean/ddns-scripts_dnspod
 git clone --depth 1 https://github.com/small-5/ddns-scripts-aliyun package/lean/ddns-scripts_aliyun
 svn co https://github.com/QiuSimons/OpenWrt_luci-app/trunk/luci-app-tencentddns package/lean/luci-app-tencentddns
@@ -235,6 +237,8 @@ git clone -b master --depth 1 https://github.com/destan19/OpenAppFilter.git pack
 git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git package/new/luci-app-oled
 # OpenClash
 git clone --single-branch --depth 1 -b dev https://github.com/vernesong/OpenClash.git package/new/luci-app-openclash
+# adjust booting order
+sed -i 's/START=99/START=97/g' package/new/luci-app-openclash/root/etc/init.d/openclash
 pushd package/new/luci-app-openclash
 #wget -qO - https://github.com/vernesong/OpenClash/pull/1499.patch | patch -p1
 popd
