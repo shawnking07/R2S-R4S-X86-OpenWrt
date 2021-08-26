@@ -38,8 +38,15 @@ wget -qO - https://github.com/openwrt/openwrt/commit/cfaf039.patch | patch -p1
 # CacULE
 wget -qO - https://github.com/QiuSimons/openwrt-NoTengoBattery/commit/7d44cab.patch | patch -p1
 wget https://github.com/hamadmarri/cacule-cpu-scheduler/raw/master/patches/CacULE/v5.4/cacule-5.4.patch -O ./target/linux/generic/hack-5.4/694-cacule-5.4.patch
+#wget https://github.com/hamadmarri/cacule-cpu-scheduler/raw/vR2.1/patches/CacULE/v5.4/cacule-5.4.patch -O ./target/linux/generic/hack-5.4/694-cacule-5.4.patch
 # UKSM
 cp -f ../PATCH/UKSM/695-uksm-5.4.patch ./target/linux/generic/hack-5.4/695-uksm-5.4.patch
+# LRNG
+cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.4/
+echo '
+CONFIG_LRNG=y
+CONFIG_LRNG_JENT=y
+' >> ./target/linux/generic/config-5.4
 # Grub 2
 wget -qO - https://github.com/QiuSimons/openwrt-NoTengoBattery/commit/afed16a.patch | patch -p1
 # Haproxy
@@ -152,7 +159,7 @@ svn co https://github.com/QiuSimons/slim-wrt/branches/main/slimapps/application/
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # ChinaDNS
-git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
+git clone -b luci --depth 1 https://github.com/QiuSimons/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 # 内存压缩
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/2840.patch | patch -p1
@@ -348,6 +355,9 @@ wget -P feeds/packages/libs/quickjspp/patches/ https://github.com/QiuSimons/quic
 ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
 # 网易云音乐解锁
 git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/UnblockNeteaseMusic
+#pushd package/new/UnblockNeteaseMusic
+#wget -qO - https://github.com/immortalwrt/luci-app-unblockneteasemusic/pull/78.patch | patch -p1
+#popd
 # USB 打印机
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/lean/luci-app-usb-printer
 # UU加速器
@@ -398,7 +408,7 @@ svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/addition-trans-zh package/
 # Lets Fuck
 mkdir package/base-files/files/usr/bin
 wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/fuck
-wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/chinadnslist
+#wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/chinadnslist
 #wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/setdns
 # 最大连接数
 sed -i 's/16384/65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
