@@ -66,7 +66,7 @@ popd
 # Patch FireWall 以增添 FullCone 功能 
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/immortalwrt/raw/master/package/network/config/firewall/patches/fullconenat.patch
-wget -qO- https://github.com/msylgj/R2S-R4S-OpenWrt/raw/21.02/SCRIPTS/fix_firewall_flock.patch | patch -p1
+wget -qO- https://raw.githubusercontent.com/msylgj/R2S-R4S-OpenWrt/21.02/PATCHES/001-fix-firewall-flock.patch | patch -p1
 # Patch LuCI 以增添 FullCone 开关
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_fullcone.patch
 # FullCone 相关组件
@@ -304,9 +304,9 @@ svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev pack
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
-svn co https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
-svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
-svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
 svn co https://github.com/immortalwrt/packages/trunk/net/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 ln -sf ../../../feeds/packages/net/shadowsocks-rust ./package/feeds/packages/shadowsocks-rust
 svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
@@ -315,7 +315,11 @@ ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 rm -rf ./package/lean/luci-app-ssr-plus/po/zh_Hans
 pushd package/lean
-#wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/641.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/642.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/645.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/647.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/648.patch | patch -p1
 #wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
