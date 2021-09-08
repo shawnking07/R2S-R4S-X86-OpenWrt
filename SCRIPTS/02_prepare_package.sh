@@ -97,6 +97,8 @@ cp -f ../PATCH/target_r4s/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoP
 #cp -f ../PATCH/target_r4s/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch ./target/linux/rockchip/patches-5.4/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch
 # AutoCore
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/lean/autocore
+sed -i '/sourcelink.append(corelink);/ a sourcelink.append(corelink)+" modified by Shawn";' package/lean/autocore/files/arm/rpcd_10_system.js
+sed -i '/sourcelink.append(corelink);/ a sourcelink.append(corelink)+" modified by Shawn";' package/lean/autocore/files/x86/rpcd_10_system.js
 rm -rf ./feeds/packages/utils/coremark
 svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 # 更换 Nodejs 版本
