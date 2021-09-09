@@ -66,7 +66,7 @@ popd
 # Patch FireWall 以增添 FullCone 功能 
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/immortalwrt/raw/master/package/network/config/firewall/patches/fullconenat.patch
-wget -qO- https://github.com/msylgj/R2S-R4S-OpenWrt/raw/21.02/SCRIPTS/fix_firewall_flock.patch | patch -p1
+wget -qO- https://raw.githubusercontent.com/msylgj/R2S-R4S-OpenWrt/21.02/PATCHES/001-fix-firewall-flock.patch | patch -p1
 # Patch LuCI 以增添 FullCone 开关
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_fullcone.patch
 # FullCone 相关组件
@@ -94,7 +94,15 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/a
 # R4S超频到 2.2/1.8 GHz
 rm -rf ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 cp -f ../PATCH/target_r4s/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
-#cp -f ../PATCH/target_r4s/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch ./target/linux/rockchip/patches-5.4/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch
+cp -f ../PATCH/target_r4s/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch ./target/linux/rockchip/patches-5.4/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch
+# Disable Mitigations
+https://github.com/immortalwrt/immortalwrt/tree/master/target/linux/rockchip/image
+sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/mmc.bootscript
+sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/nanopi-r2s.bootscript
+sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/nanopi-r4s.bootscript
+sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-efi.cfg
+sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-iso.cfg
+sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-pc.cfg
 # AutoCore
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/lean/autocore
 sed -i '/sourcelink.append(corelink);/ a sourcelink.append(corelink)+" modified by Shawn";' package/lean/autocore/files/arm/rpcd_10_system.js
@@ -310,9 +318,9 @@ svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev pack
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
 svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/lean/v2ray-core
-svn co https://github.com/fw876/helloworld/trunk/xray-core package/new/xray-core
-svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/new/v2ray-plugin
-svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/new/xray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-core package/lean/xray-core
+svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/lean/v2ray-plugin
+svn co https://github.com/fw876/helloworld/trunk/xray-plugin package/lean/xray-plugin
 svn co https://github.com/immortalwrt/packages/trunk/net/shadowsocks-rust feeds/packages/net/shadowsocks-rust
 ln -sf ../../../feeds/packages/net/shadowsocks-rust ./package/feeds/packages/shadowsocks-rust
 svn co https://github.com/immortalwrt/packages/trunk/net/kcptun feeds/packages/net/kcptun
@@ -321,7 +329,11 @@ ln -sf ../../../feeds/packages/net/kcptun ./package/feeds/packages/kcptun
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 rm -rf ./package/lean/luci-app-ssr-plus/po/zh_Hans
 pushd package/lean
-#wget -qO - https://github.com/fw876/helloworld/pull/513.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/641.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/642.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/645.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/647.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/648.patch | patch -p1
 #wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
