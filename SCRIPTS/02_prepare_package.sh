@@ -105,8 +105,8 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-pc.cfg
 # AutoCore
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/lean/autocore
-sed -i '/sourcelink.append(corelink);/ a sourcelink.append(corelink)+" modified by Shawn";' package/lean/autocore/files/arm/rpcd_10_system.js
-sed -i '/sourcelink.append(corelink);/ a sourcelink.append(corelink)+" modified by Shawn";' package/lean/autocore/files/x86/rpcd_10_system.js
+sed -i '/sourcelink.append(corelink);/ a sourcelink.append(" modified by Shawn");' package/lean/autocore/files/arm/rpcd_10_system.js
+sed -i '/sourcelink.append(corelink);/ a sourcelink.append(" modified by Shawn");' package/lean/autocore/files/x86/rpcd_10_system.js
 rm -rf ./feeds/packages/utils/coremark
 svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 # 更换 Nodejs 版本
