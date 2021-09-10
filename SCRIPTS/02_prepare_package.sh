@@ -166,6 +166,10 @@ ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/lu
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 # Boost 通用即插即用
 svn co https://github.com/QiuSimons/slim-wrt/branches/main/slimapps/application/luci-app-boostupnp package/new/luci-app-boostupnp
+# 更改为国内 IP 查询
+NEW_IP_CHECKER=$'curl --location --request GET \'https://forge.speedtest.cn/api/location/info\' | grep -o \'"full_ip":\s*"[^"]*\' | grep -o \'[^"]*$\''
+sed -i "s,curl -s https://api.ipify.org,$NEW_IP_CHECKER," package/new/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
+unset NEW_IP_CHECKER
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # ChinaDNS
