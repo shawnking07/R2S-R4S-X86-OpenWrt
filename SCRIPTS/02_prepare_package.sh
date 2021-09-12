@@ -100,9 +100,9 @@ https://github.com/immortalwrt/immortalwrt/tree/master/target/linux/rockchip/ima
 sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/mmc.bootscript
 sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/nanopi-r2s.bootscript
 sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/nanopi-r4s.bootscript
-sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-efi.cfg
-sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-iso.cfg
-sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/rockchip/image/grub-pc.cfg
+sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-efi.cfg
+sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-iso.cfg
+sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cfg
 # AutoCore
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/lean/autocore
 sed -i '/sourcelink.append(corelink);/ a sourcelink.append(" modified by Shawn");' package/lean/autocore/files/arm/rpcd_10_system.js
