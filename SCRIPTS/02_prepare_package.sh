@@ -17,7 +17,6 @@ rm -rf ./scripts/download.pl
 rm -rf ./include/download.mk
 wget -P scripts/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/scripts/download.pl
 wget -P include/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/include/download.mk
-#wget -P include/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/include/package-immortalwrt.mk
 sed -i '/unshift/d' scripts/download.pl
 sed -i '/mirror02/d' scripts/download.pl
 echo "net.netfilter.nf_conntrack_helper = 1" >> ./package/kernel/linux/files/sysctl-nf-conntrack.conf
@@ -38,7 +37,6 @@ wget -qO - https://github.com/openwrt/openwrt/commit/cfaf039.patch | patch -p1
 # CacULE
 wget -qO - https://github.com/QiuSimons/openwrt-NoTengoBattery/commit/7d44cab.patch | patch -p1
 wget https://github.com/hamadmarri/cacule-cpu-scheduler/raw/master/patches/CacULE/v5.4/cacule-5.4.patch -O ./target/linux/generic/hack-5.4/694-cacule-5.4.patch
-#wget https://github.com/hamadmarri/cacule-cpu-scheduler/raw/vR2.1/patches/CacULE/v5.4/cacule-5.4.patch -O ./target/linux/generic/hack-5.4/694-cacule-5.4.patch
 # UKSM
 cp -f ../PATCH/UKSM/695-uksm-5.4.patch ./target/linux/generic/hack-5.4/695-uksm-5.4.patch
 # LRNG
@@ -66,23 +64,11 @@ popd
 # Patch FireWall 以增添 FullCone 功能 
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/immortalwrt/raw/master/package/network/config/firewall/patches/fullconenat.patch
-wget -qO- https://raw.githubusercontent.com/msylgj/R2S-R4S-OpenWrt/21.02/PATCHES/001-fix-firewall-flock.patch | patch -p1
+wget -qO- https://github.com/msylgj/R2S-R4S-OpenWrt/raw/21.02/PATCHES/001-fix-firewall-flock.patch | patch -p1
 # Patch LuCI 以增添 FullCone 开关
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_fullcone.patch
 # FullCone 相关组件
-cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
-
-### Shortcut-FE 部分 ###
-# Patch Kernel 以支持 Shortcut-FE
-#pushd target/linux/generic/hack-5.4
-#wget https://github.com/immortalwrt/immortalwrt/raw/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-#popd
-# Patch LuCI 以增添 Shortcut-FE 开关
-#patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
-# Shortcut-FE 相关组件
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/lean/shortcut-fe
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
-#wget -P package/base-files/files/etc/init.d/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/shortcut-fe
+svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
 
 ### 获取额外的基础软件包 ###
 # 更换为 ImmortalWrt Uboot 以及 Target
@@ -91,6 +77,8 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/master/target/linux/r
 rm -rf ./package/boot/uboot-rockchip
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/arm-trusted-firmware-rockchip-vendor package/boot/arm-trusted-firmware-rockchip-vendor
+rm -rf ./package/kernel/linux/modules/video.mk
+wget -P package/kernel/linux/modules/ https://github.com/immortalwrt/immortalwrt/raw/master/package/kernel/linux/modules/video.mk
 # R4S超频到 2.2/1.8 GHz
 rm -rf ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
 cp -f ../PATCH/target_r4s/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
@@ -128,7 +116,6 @@ rm -rf ./feeds/packages/lang/node-yarn
 svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-yarn feeds/packages/lang/node-yarn
 ln -sf ../../../feeds/packages/lang/node-yarn ./package/feeds/packages/node-yarn
 # R8168驱动
-#svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
 patch -p1 < ../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # R8152驱动
@@ -147,7 +134,7 @@ svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-control-weburl pa
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/lean/adbyby
 # 广告过滤 AdGuard
-cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
+svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 sed -i 's/START=95/START=91/g' ./package/new/luci-app-adguardhome/root/etc/init.d/AdGuardHome
 rm -rf ./feeds/packages/net/adguardhome
 svn co https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
@@ -155,9 +142,6 @@ sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DI
 sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 # Argon 主题
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
-#wget -P ./package/new/luci-theme-argon/htdocs/luci-static/argon/css/ -N https://github.com/msylgj/luci-theme-argon/raw/patch-1/htdocs/luci-static/argon/css/dark.css
-#wget -P ./package/new/luci-theme-argon/luasrc/view/themes/argon -N https://github.com/jerrykuku/luci-theme-argon/raw/9fdcfc866ca80d8d094d554c6aedc18682661973/luasrc/view/themes/argon/footer.htm
-#wget -P ./package/new/luci-theme-argon/luasrc/view/themes/argon -N https://github.com/jerrykuku/luci-theme-argon/raw/9fdcfc866ca80d8d094d554c6aedc18682661973/luasrc/view/themes/argon/header.htm
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git package/new/luci-app-argon-config
 # MAC 地址与 IP 绑定
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-arpbind feeds/luci/applications/luci-app-arpbind
@@ -175,15 +159,6 @@ svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/ne
 # ChinaDNS
 git clone -b luci --depth 1 https://github.com/QiuSimons/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
-# 内存压缩
-#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/2840.patch | patch -p1
-#wget -O- https://github.com/NoTengoBattery/openwrt/commit/40f1d5.patch | patch -p1
-#wget -O- https://github.com/NoTengoBattery/openwrt/commit/a83a0b.patch | patch -p1
-#wget -O- https://github.com/NoTengoBattery/openwrt/commit/6d5fb4.patch | patch -p1
-#mkdir ./package/new
-#cp -rf ../NoTengoBattery/feeds/luci/applications/luci-app-compressed-memory ./package/new/luci-app-compressed-memory
-#sed -i 's,include ../..,include $(TOPDIR)/feeds/luci,g' ./package/new/luci-app-compressed-memory/Makefile
-#cp -rf ../NoTengoBattery/package/system/compressed-memory ./package/system/compressed-memory
 # CPU 控制相关
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
 ln -sf ../../../feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-cpufreq
@@ -194,20 +169,14 @@ svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-cpulimit package/
 svn co https://github.com/immortalwrt/packages/trunk/utils/cpulimit feeds/packages/utils/cpulimit
 ln -sf ../../../feeds/packages/utils/cpulimit ./package/feeds/packages/cpulimit
 # 动态DNS
-#rm -rf ./feeds/packages/net/ddns-scripts
-#rm -rf ./feeds/luci/applications/luci-app-ddns
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
-#svn co https://github.com/openwrt/packages/branches/openwrt-18.06/net/ddns-scripts feeds/packages/net/ddns-scripts
-#svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
-sed -i 's/START=95/START=99/g' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
-# fix 自启动
-sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
 git clone --depth 1 https://github.com/small-5/ddns-scripts-dnspod package/lean/ddns-scripts_dnspod
 git clone --depth 1 https://github.com/small-5/ddns-scripts-aliyun package/lean/ddns-scripts_aliyun
 svn co https://github.com/QiuSimons/OpenWrt_luci-app/trunk/luci-app-tencentddns package/lean/luci-app-tencentddns
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliddns feeds/luci/applications/luci-app-aliddns
 ln -sf ../../../feeds/luci/applications/luci-app-aliddns ./package/feeds/luci/luci-app-aliddns
+sed -i 's/START=95/START=99/g' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
+# fix 自启动
+sed -i '/boot()/,+2d' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns
 # Docker 容器（会导致 OpenWrt 出现 UDP 转发问题，慎用）
 sed -i 's/+docker/+docker \\\n\t+dockerd/g' ./feeds/luci/applications/luci-app-dockerman/Makefile
 # Dnsfilter
@@ -234,15 +203,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper packa
 # 京东签到 By Jerrykuku
 git clone --depth 1 https://github.com/jerrykuku/node-request.git package/new/node-request
 git clone --depth 1 https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/new/luci-app-jd-dailybonus
-#pushd package/new/luci-app-jd-dailybonus
-#sed -i 's,wget-ssl,wget,g' root/usr/share/jd-dailybonus/newapp.sh luasrc/controller/jd-dailybonus.lua
-#sed -i 's,* sh,*,g' root/usr/share/jd-dailybonus/newapp.sh
-#popd
-#rm -rf ./package/new/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/JD_DailyBonus.js
-#wget -P package/new/luci-app-jd-dailybonus/root/usr/share/jd-dailybonus/ https://github.com/NobyDa/Script/raw/master/JD-DailyBonus/JD_DailyBonus.js
-# 回滚通用即插即用
-#rm -rf ./feeds/packages/net/miniupnpd
-#svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # MentoHUST
 git clone --depth 1 https://github.com/BoringCat/luci-app-mentohust package/new/luci-app-mentohust
 git clone --depth 1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/new/MentoHUST
@@ -262,23 +222,15 @@ git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git packa
 git clone --single-branch --depth 1 -b dev https://github.com/vernesong/OpenClash.git package/new/luci-app-openclash
 # adjust booting order
 sed -i 's/START=99/START=97/g' package/new/luci-app-openclash/luci-app-openclash/root/etc/init.d/openclash
-pushd package/new/luci-app-openclash
-#wget -qO - https://github.com/vernesong/OpenClash/pull/1499.patch | patch -p1
-popd
 # 花生壳内网穿透
-#svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
-#svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/phtunnel package/new/phtunnel
 svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
 svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
 svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-app-oray package/new/luci-app-oray
-# Pandownload
-#svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/pandownload-fake-server package/lean/pandownload-fake-server
 # Passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 sed -i 's,default n,default y,g' package/new/luci-app-passwall/Makefile
 sed -i '/V2ray:v2ray/d' package/new/luci-app-passwall/Makefile
 sed -i '/plugin:v2ray/d' package/new/luci-app-passwall/Makefile
-#sed -i '/Proxy:naive/d' package/new/luci-app-passwall/Makefile
 wget -P package/new/luci-app-passwall/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
 chmod -R 755 ./package/new/luci-app-passwall/move_2_services.sh
 pushd package/new/luci-app-passwall
@@ -293,10 +245,12 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/n
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
 # qBittorrent 下载
-svn co https://github.com/garypang13/openwrt-static-qb/trunk/qBittorrent-Enhanced-Edition package/lean/qBittorrent-Enhanced-Edition
-sed -i 's/4.3.3.10/4.3.4.10/g' package/lean/qBittorrent-Enhanced-Edition/Makefile
-svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-qbittorrent feeds/luci/applications/luci-app-qbittorrent
-ln -sf ../../../feeds/luci/applications/luci-app-qbittorrent ./package/feeds/luci/luci-app-qbittorrent
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-qbittorrent package/lean/luci-app-qbittorrent
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/qBittorrent-static package/lean/qBittorrent-static
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/qBittorrent package/lean/qBittorrent
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/rblibtorrent package/lean/rblibtorrent
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/qtbase package/lean/qtbase
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/qttools package/lean/qttools
 # 清理内存
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree package/lean/luci-app-ramfree
 # ServerChan 微信推送
@@ -310,10 +264,8 @@ svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/l
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/xray-core
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/lean/pdnsd
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/microsocks package/lean/microsocks
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dns2socks package/lean/dns2socks
@@ -338,7 +290,6 @@ pushd package/lean
 wget -qO - https://github.com/fw876/helloworld/pull/641.patch | patch -p1
 wget -qO - https://github.com/fw876/helloworld/pull/642.patch | patch -p1
 wget -qO - https://github.com/fw876/helloworld/pull/645.patch | patch -p1
-#wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/c1674ad.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
 popd
@@ -347,7 +298,6 @@ sed -i 's,default n,default y,g' Makefile
 sed -i 's,Xray:xray ,Xray:xray-core ,g' Makefile
 sed -i '/V2ray:v2ray/d' Makefile
 sed -i '/plugin:v2ray/d' Makefile
-#sed -i '/Proxy:naive/d' Makefile
 sed -i '/result.encrypt_method/a\result.fast_open = "1"' root/usr/share/shadowsocksr/subscribe.lua
 sed -i 's,ispip.clang.cn/all_cn,cdn.jsdelivr.net/gh/QiuSimons/Chnroute@master/dist/chnroute/chnroute,' root/etc/init.d/shadowsocksr
 sed -i 's,YW5vbnltb3Vz/domain-list-community/release/gfwlist.txt,Loyalsoldier/v2ray-rules-dat/release/gfw.txt,' root/etc/init.d/shadowsocksr
@@ -373,9 +323,6 @@ wget -P feeds/packages/libs/quickjspp/patches/ https://github.com/QiuSimons/quic
 ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
 # 网易云音乐解锁
 git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/UnblockNeteaseMusic
-#pushd package/new/UnblockNeteaseMusic
-#wget -qO - https://github.com/immortalwrt/luci-app-unblockneteasemusic/pull/78.patch | patch -p1
-#popd
 # USB 打印机
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/lean/luci-app-usb-printer
 # UU加速器
@@ -426,8 +373,6 @@ svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/addition-trans-zh package/
 # Lets Fuck
 mkdir package/base-files/files/usr/bin
 wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/fuck
-#wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/chinadnslist
-#wget -P package/base-files/files/usr/bin/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/setdns
 # 最大连接数
 sed -i 's/16384/65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
@@ -436,5 +381,21 @@ sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_genera
 
 # 生成默认配置及缓存
 rm -rf .config
+
+### Shortcut-FE 部分 ###
+# Patch Kernel 以支持 Shortcut-FE
+#pushd target/linux/generic/hack-5.4
+#wget https://github.com/immortalwrt/immortalwrt/raw/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+#popd
+# Patch LuCI 以增添 Shortcut-FE 开关
+#patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
+# Shortcut-FE 相关组件
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/lean/shortcut-fe
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
+#wget -P package/base-files/files/etc/init.d/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/shortcut-fe
+
+# 回滚通用即插即用
+#rm -rf ./feeds/packages/net/miniupnpd
+#svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 
 #exit 0
