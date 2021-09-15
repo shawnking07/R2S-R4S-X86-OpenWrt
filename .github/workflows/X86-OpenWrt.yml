@@ -71,7 +71,7 @@ jobs:
       run: |
         cd openwrt
         mv ../SEED/X86/config.seed .config
-        echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
+        #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
         make defconfig
     - name: Smart chmod
       run: |
@@ -98,8 +98,7 @@ jobs:
       run: |
         df -h
         cd openwrt
-        let Make_Process=$(nproc)+2
-        make -j${Make_Process} || make -j${Make_Process} V=s
+        make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
         echo $?
     - name: If Error
       if: steps.compileopenwrt.outcome == 'failure'
