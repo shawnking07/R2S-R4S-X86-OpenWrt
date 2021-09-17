@@ -92,7 +92,7 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-efi.c
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-iso.cfg
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cfg
 # AutoCore
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/lean/autocore
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/lean/autocore
 sed -i '/sourcelink.append(corelink);/ a sourcelink.append(" modified by Shawn");' package/lean/autocore/files/arm/rpcd_10_system.js
 sed -i '/sourcelink.append(corelink);/ a sourcelink.append(" modified by Shawn");' package/lean/autocore/files/x86/rpcd_10_system.js
 rm -rf ./feeds/packages/utils/coremark
