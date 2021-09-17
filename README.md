@@ -27,17 +27,3 @@
 ### 下载
 
 - 选择自己<b>设备对应的固件</b>，并[下载](https://github.com/shawnking07/R2S-R4S-X86-OpenWrt/releases/)
-
-### 鸣谢
-
-|                 [CTCGFW](https://github.com/immortalwrt)                  |              [coolsnowwolf](https://github.com/coolsnowwolf)              |                    [Lienol](https://github.com/Lienol)                    |              [AmadeusGhost](https://github.com/AmadeusGhost)              |
-| :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
-| <img width="60" src="https://avatars.githubusercontent.com/u/53193414"/>  | <img width="60" src="https://avatars.githubusercontent.com/u/31687149" /> | <img width="60" src="https://avatars.githubusercontent.com/u/23146169" /> | <img width="60" src="https://avatars.githubusercontent.com/u/42570690" /> |
-|            [NoTengoBattery](https://github.com/NoTengoBattery)            |                    [tty228](https://github.com/tty228)                    |                  [destan19](https://github.com/destan19)                  |                [1715173329](https://github.com/1715173329)                |
-| <img width="60" src="https://avatars.githubusercontent.com/u/11285513" /> | <img width="60" src="https://avatars.githubusercontent.com/u/33397881" /> | <img width="60" src="https://avatars.githubusercontent.com/u/3950091" />  | <img width="60" src="https://avatars.githubusercontent.com/u/22235437" /> |
-|                 [jerrykuku](https://github.com/jerrykuku)                 |                    [lisaac](https://github.com/lisaac)                    |             [rufengsuixing](https://github.com/rufengsuixing)             |                 [vernesong](https://github.com/vernesong)                 |
-| <img width="60" src="https://avatars.githubusercontent.com/u/9485680" />  | <img width="60" src="https://avatars.githubusercontent.com/u/3320969" />  | <img width="60" src="https://avatars.githubusercontent.com/u/22387141" /> | <img width="60" src="https://avatars.githubusercontent.com/u/42875168" /> |
-|                     [ElonH](https://github.com/ElonH)                     |                   [NateLol](https://github.com/NateLol)                   |                [garypang13](https://github.com/garypang13)                |              [QiuSimons](https://github.com/QiuSimons/YAOF)               |
-| <img width="60" src="https://avatars.githubusercontent.com/u/32666230" /> | <img width="60" src="https://avatars.githubusercontent.com/u/5166306" />  | <img width="60" src="https://avatars.githubusercontent.com/u/48883331" /> | <img width="60" src="https://avatars.githubusercontent.com/u/45143996" /> |
-
-
