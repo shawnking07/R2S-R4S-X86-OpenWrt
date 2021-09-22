@@ -293,6 +293,8 @@ svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/
 rm -rf ./package/lean/luci-app-ssr-plus/po/zh_Hans
 pushd package/lean
 wget -qO - https://github.com/fw876/helloworld/pull/645.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/656.patch | patch -p1
+wget -qO - https://github.com/fw876/helloworld/pull/657.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/5bbf6e7.patch | patch -p1
 wget -qO - https://github.com/QiuSimons/helloworld-fw876/commit/323fbf0.patch | patch -p1
 popd
@@ -324,6 +326,8 @@ svn co https://github.com/immortalwrt/packages/trunk/libs/quickjspp feeds/packag
 mkdir feeds/packages/libs/quickjspp/patches
 wget -P feeds/packages/libs/quickjspp/patches/ https://github.com/QiuSimons/quickjspp/commit/4cb20c1.patch
 ln -sf ../../../feeds/packages/libs/quickjspp ./package/feeds/packages/quickjspp
+svn co https://github.com/immortalwrt/packages/trunk/libs/toml11 feeds/packages/libs/toml11
+ln -sf ../../../feeds/packages/libs/toml11 ./package/feeds/packages/toml11
 # 网易云音乐解锁
 git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/UnblockNeteaseMusic
 # USB 打印机
