@@ -1,7 +1,7 @@
-From 44305098f785b82a20285ad47668bacd2a2ee4a8 Mon Sep 17 00:00:00 2001
+From bd786e34db91f6a72788d397625a41d01e1bd7bc Mon Sep 17 00:00:00 2001
 From: Stephan Mueller <smueller@chronox.de>
-Date: Fri, 18 Jun 2021 08:13:57 +0200
-Subject: [PATCH v41 10/13] LRNG - add Jitter RNG fast noise source
+Date: Mon, 30 Aug 2021 12:32:04 +0200
+Subject: [PATCH v42 10/13] LRNG - add Jitter RNG fast noise source
 
 The Jitter RNG fast noise source implemented as part of the kernel
 crypto API is queried for 256 bits of entropy at the time the seed
@@ -24,17 +24,18 @@ CC: Andy Lutomirski <luto@kernel.org>
 CC: Florian Weimer <fweimer@redhat.com>
 CC: Lennart Poettering <mzxreary@0pointer.de>
 CC: Nicolai Stange <nstange@suse.de>
-CC: Alexander Lobakin <alobakin@mailbox.org>
+Reviewed-by: Alexander Lobakin <alobakin@pm.me>
+Tested-by: Alexander Lobakin <alobakin@pm.me>
 Reviewed-by: Marcelo Henrique Cerri <marcelo.cerri@canonical.com>
 Tested-by: Marcelo Henrique Cerri <marcelo.cerri@canonical.com>
 Tested-by: Neil Horman <nhorman@redhat.com>
 Signed-off-by: Stephan Mueller <smueller@chronox.de>
 ---
- drivers/char/lrng/Kconfig     | 27 +++++++++++
- drivers/char/lrng/Makefile    |  1 +
- drivers/char/lrng/lrng_jent.c | 90 +++++++++++++++++++++++++++++++++++
+ drivers/char/lrng/Kconfig        | 27 ++++++++++
+ drivers/char/lrng/Makefile       |  1 +
+ drivers/char/lrng/lrng_es_jent.c | 90 ++++++++++++++++++++++++++++++++
  3 files changed, 118 insertions(+)
- create mode 100644 drivers/char/lrng/lrng_jent.c
+ create mode 100644 drivers/char/lrng/lrng_es_jent.c
 
 --- a/drivers/char/lrng/Kconfig
 +++ b/drivers/char/lrng/Kconfig
@@ -78,9 +79,9 @@ Signed-off-by: Stephan Mueller <smueller@chronox.de>
  obj-$(CONFIG_LRNG_KCAPI_HASH)	+= lrng_kcapi_hash.o
  obj-$(CONFIG_LRNG_DRBG)		+= lrng_drbg.o
  obj-$(CONFIG_LRNG_KCAPI)	+= lrng_kcapi.o
-+obj-$(CONFIG_LRNG_JENT)		+= lrng_jent.o
++obj-$(CONFIG_LRNG_JENT)		+= lrng_es_jent.o
 --- /dev/null
-+++ b/drivers/char/lrng/lrng_jent.c
++++ b/drivers/char/lrng/lrng_es_jent.c
 @@ -0,0 +1,90 @@
 +// SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
 +/*
@@ -115,8 +116,8 @@ Signed-off-by: Stephan Mueller <smueller@chronox.de>
 +static int __init lrng_jent_initialize(void)
 +{
 +	/* Initialize the Jitter RNG after the clocksources are initialized. */
-+	lrng_jent_state = jent_lrng_entropy_collector();
-+	if (!lrng_jent_state) {
++	if (jent_entropy_init() ||
++	    (lrng_jent_state = jent_entropy_collector_alloc(1, 0)) == NULL) {
 +		jitterrng = 0;
 +		pr_info("Jitter RNG unusable on current system\n");
 +		return 0;
