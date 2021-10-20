@@ -54,8 +54,9 @@ pushd feeds/packages
 wget -qO - https://github.com/QiuSimons/packages/commit/7ffbfbe.patch | patch -p1
 popd
 # OPENSSL
-wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/14578.patch
 wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/11895.patch
+wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/14578.patch
+wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/16575.patch
 
 ### Fullcone-NAT 部分 ###
 # Patch Kernel 以解决 FullCone 冲突
