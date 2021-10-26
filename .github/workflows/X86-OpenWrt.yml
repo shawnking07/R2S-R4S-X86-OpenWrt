@@ -131,9 +131,9 @@ jobs:
       id: create_release
       uses: ncipollo/release-action@v1.8.0
       with:
-        name: OpenWRT-21.02.0
+        name: OpenWRT-21.02.1
         allowUpdates: true
-        tag: 21.02.0
+        tag: 21.02.1
         commit: master
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
