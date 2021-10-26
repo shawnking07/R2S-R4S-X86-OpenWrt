@@ -146,6 +146,8 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-the
 #git checkout 3b15d06
 #popd
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git package/new/luci-app-argon-config
+# luci-app-easymesh
+git clone -b master --depth 1 https://github.com/ntlf9t/luci-app-easymesh.git package/lean/luci-app-easymesh
 # MAC 地址与 IP 绑定
 svn co https://github.com/immortalwrt/luci/trunk/applications/luci-app-arpbind feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
