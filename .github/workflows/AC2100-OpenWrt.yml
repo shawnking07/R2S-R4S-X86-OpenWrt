@@ -119,7 +119,6 @@ jobs:
         gzip --best *.img
         ls -Ahl
         sha256sum openwrt*ac2100* | tee AC2100-sk07-$(date +%Y-%m-%d)-21.02.sha256sum
-        zip AC2100-sk07-$(date +%Y-%m-%d)-21.02-ext4.zip *ac2100*ext4*
         zip AC2100-sk07-$(date +%Y-%m-%d)-21.02-sfs.zip *ac2100*squashfs*
         ls -Ahl
     - name: Upload artifact
