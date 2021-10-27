@@ -3,6 +3,7 @@ name: AC2100-OpenWrt
 on:
 #  schedule:
 #    - cron: 5 6 * * 0
+  workflow_dispatch:
   watch:
     types: started
 
@@ -71,7 +72,7 @@ jobs:
     - name: Make Config
       run: |
         cd openwrt
-        mv ../SEED/R2S/config.seed .config
+        mv ../SEED/AC2100/config.seed .config
         #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
         make defconfig
     - name: Get Architecture
@@ -117,7 +118,7 @@ jobs:
         gzip -d *.gz && exit 0
         gzip --best *.img
         ls -Ahl
-        sha256sum openwrt*r2s* | tee AC2100-sk07-$(date +%Y-%m-%d)-21.02.sha256sum
+        sha256sum openwrt*ac2100* | tee AC2100-sk07-$(date +%Y-%m-%d)-21.02.sha256sum
         zip AC2100-sk07-$(date +%Y-%m-%d)-21.02-ext4.zip *ac2100*ext4*
         zip AC2100-sk07-$(date +%Y-%m-%d)-21.02-sfs.zip *ac2100*squashfs*
         ls -Ahl
