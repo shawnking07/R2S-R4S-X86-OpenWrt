@@ -48,11 +48,11 @@ CONFIG_LRNG_JENT=y
 # Grub 2
 wget -qO - https://github.com/QiuSimons/openwrt-NoTengoBattery/commit/afed16a.patch | patch -p1
 # Haproxy
-rm -rf ./feeds/packages/net/haproxy
-svn co https://github.com/openwrt/packages/trunk/net/haproxy feeds/packages/net/haproxy
-pushd feeds/packages
-wget -qO - https://github.com/QiuSimons/packages/commit/7ffbfbe.patch | patch -p1
-popd
+# rm -rf ./feeds/packages/net/haproxy
+# svn co https://github.com/openwrt/packages/trunk/net/haproxy feeds/packages/net/haproxy
+# pushd feeds/packages
+# wget -qO - https://github.com/QiuSimons/packages/commit/7ffbfbe.patch | patch -p1
+# popd
 # OPENSSL
 wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/11895.patch
 wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/14578.patch
