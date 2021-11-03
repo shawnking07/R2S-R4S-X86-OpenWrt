@@ -48,11 +48,11 @@ CONFIG_LRNG_JENT=y
 # Grub 2
 wget -qO - https://github.com/QiuSimons/openwrt-NoTengoBattery/commit/afed16a.patch | patch -p1
 # Haproxy
-# rm -rf ./feeds/packages/net/haproxy
-# svn co https://github.com/openwrt/packages/trunk/net/haproxy feeds/packages/net/haproxy
-# pushd feeds/packages
-# wget -qO - https://github.com/QiuSimons/packages/commit/7ffbfbe.patch | patch -p1
-# popd
+rm -rf ./feeds/packages/net/haproxy
+svn co https://github.com/openwrt/packages/trunk/net/haproxy feeds/packages/net/haproxy
+pushd feeds/packages
+wget -qO - https://github.com/QiuSimons/packages/commit/7ffbfbe.patch | patch -p1
+popd
 # OPENSSL
 wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/11895.patch
 wget -P package/libs/openssl/patches/ https://github.com/openssl/openssl/pull/14578.patch
@@ -241,7 +241,7 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall pac
 sed -i 's,default n,default y,g' package/new/luci-app-passwall/Makefile
 sed -i '/Trojan_GO:/d' package/new/luci-app-passwall/Makefile
 sed -i '/V2ray:/d' package/new/luci-app-passwall/Makefile
-sed -i '/V2ray_Plugin:/d' package/new/luci-app-passwall/Makefile
+sed -i '/Plugin:/d' package/new/luci-app-passwall/Makefile
 wget -P package/new/luci-app-passwall/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
 chmod -R 755 ./package/new/luci-app-passwall/move_2_services.sh
 pushd package/new/luci-app-passwall
@@ -346,7 +346,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/le
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' package/lean/luci-app-vssr/Makefile
-sed -i '/Xray_plugin:/d' package/lean/luci-app-vssr/Makefile
+sed -i '/plugin:/d' package/lean/luci-app-vssr/Makefile
 #sed -i '/plugin:v2ray/d' package/lean/luci-app-vssr/Makefile
 sed -i '/result.encrypt_method/a\result.fast_open = "1"' package/lean/luci-app-vssr/root/usr/share/vssr/subscribe.lua
 sed -i 's,ispip.clang.cn/all_cn.txt,raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt,g' package/lean/luci-app-vssr/luasrc/controller/vssr.lua
