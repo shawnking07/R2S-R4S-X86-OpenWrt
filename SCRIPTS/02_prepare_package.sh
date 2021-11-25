@@ -42,10 +42,10 @@ wget -qO - https://github.com/openwrt/openwrt/commit/cfaf039.patch | patch -p1
 # BMQ
 #wget https://gitlab.com/alfredchen/projectc/-/raw/master/5.4/bmq_v5.4-r2.patch -O ./target/linux/generic/hack-5.4/694-bmq_v5.4-r2.patch
 # PDS
-#wget https://github.com/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/5.4/0005-v5.4_undead-pds099o.patch ./target/linux/generic/hack-5.4/694-0005-01-v5.4_undead-pds099o.patch
-#wget https://github.com/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/5.4/0005-glitched-pds.patch ./target/linux/generic/hack-5.4/694-0005-02-glitched-pds.patch
+wget https://github.com/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/5.4/0005-v5.4_undead-pds099o.patch ./target/linux/generic/hack-5.4/694-0005-01-v5.4_undead-pds099o.patch
+wget https://github.com/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/5.4/0005-glitched-pds.patch ./target/linux/generic/hack-5.4/694-0005-02-glitched-pds.patch
 # MuQSS
-wget http://ck.kolivas.org/patches/muqss/5.0/5.4/0001-MultiQueue-Skiplist-Scheduler-v0.196.patch ./target/linux/generic/hack-5.4/694-0001-MultiQueue-Skiplist-Scheduler-v0.196.patch
+#wget http://ck.kolivas.org/patches/muqss/5.0/5.4/0001-MultiQueue-Skiplist-Scheduler-v0.196.patch ./target/linux/generic/hack-5.4/694-0001-MultiQueue-Skiplist-Scheduler-v0.196.patch
 # LRNG
 cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.4/
 echo '
