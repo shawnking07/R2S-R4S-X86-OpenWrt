@@ -141,7 +141,7 @@ svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-control-weburl pa
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/lean/adbyby
 # 广告过滤 AdGuard
-svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
+git clone --depth=1 https://github.com/rufengsuixing/luci-app-adguardhome.git package/new/luci-app-adguardhome
 sed -i 's/START=95/START=98/g' ./package/new/luci-app-adguardhome/root/etc/init.d/AdGuardHome
 rm -rf ./feeds/packages/net/adguardhome
 svn co https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
