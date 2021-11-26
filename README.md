@@ -26,4 +26,4 @@
 
 ### 下载
 
-- 选择自己<b>设备对应的固件</b>，并[下载](https://github.com/shawnking07/YAOF/releases/)
+- 选择自己**设备对应的固件**，并[下载](https://github.com/shawnking07/YAOF/releases/)
