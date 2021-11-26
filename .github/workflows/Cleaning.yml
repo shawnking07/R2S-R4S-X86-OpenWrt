@@ -3,7 +3,6 @@ name: Cleaning
 on:
   schedule:
     - cron: 1 1 * * 1
-  workflow_dispatch:
   watch:
     types: started
 
@@ -28,7 +27,7 @@ jobs:
     - name: Cleanup Old Action Artifacts
       uses: kolpav/purge-artifacts-action@master
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
         expire-in: 3d
         
   Cleanup-Workflow-Logs:
@@ -38,6 +37,6 @@ jobs:
       - name: Cleanup Workflow Logs
         uses: Mattraks/delete-workflow-runs@main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
           repository: ${{ github.repository }}
           retain_days: 3
