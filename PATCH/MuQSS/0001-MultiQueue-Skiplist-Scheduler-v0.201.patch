@@ -9206,7 +9206,7 @@ Subject: [PATCH 01/11] MultiQueue Skiplist Scheduler v0.198
 +#undef CREATE_TRACE_POINTS
 --- /dev/null
 +++ b/kernel/sched/MuQSS.h
-@@ -0,0 +1,1014 @@
+@@ -0,0 +1,1019 @@
 +/* SPDX-License-Identifier: GPL-2.0 */
 +#ifndef MUQSS_SCHED_H
 +#define MUQSS_SCHED_H
@@ -9993,8 +9993,13 @@ Subject: [PATCH 01/11] MultiQueue Skiplist Scheduler v0.198
 +#endif /* CONFIG_CPU_FREQ */
 +
 +static __always_inline
-+unsigned int uclamp_rq_util_with(struct rq __maybe_unused *rq, unsigned int util,
++unsigned int uclamp_util_with(struct rq __maybe_unused *rq, unsigned int util,
 +			      struct task_struct __maybe_unused *p)
++{
++	return util;
++}
++
++static inline unsigned int uclamp_util(struct rq *rq, unsigned int util)
 +{
 +	return util;
 +}
