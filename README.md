@@ -21,7 +21,7 @@
 - O3 编译，CFLAG优化
 - 插件包含：PassWall，OpenClash，AdguardHome，网易云解锁，SQM，网络唤醒，DDNS，UPNP，FullCone(防火墙中开启，默认开启)，流量分载，irq优化，Zerotier，FRPC，FRPS，无线打印，流量监控，R2S-OLED
 - ss协议在armv8上实现了aes硬件加速（请**仅使用aead加密**的连接方式）
-- 集成并默认启用了BBRv2，LRNG，以及MuQSS Scheduler
+- 集成并默认启用了BBRv2，LRNG
 - 如有任何问题，请先尝试ssh进入后台，输入fuck后回车，等待机器重启后确认问题是否已经解决
 
 ### 下载
