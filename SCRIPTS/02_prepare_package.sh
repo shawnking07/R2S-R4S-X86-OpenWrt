@@ -260,7 +260,7 @@ svn co https://github.com/QiuSimons/dragino2-teasiu/trunk/package/teasiu/luci-ap
 # Passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 sed -i 's,default n,default y,g' package/new/luci-app-passwall/Makefile
-# sed -i '/Trojan_GO:/d' package/new/luci-app-passwall/Makefile
+sed -i '/Trojan_GO:/d' package/new/luci-app-passwall/Makefile
 sed -i '/V2ray:/d' package/new/luci-app-passwall/Makefile
 sed -i '/Plugin:/d' package/new/luci-app-passwall/Makefile
 wget -P package/new/luci-app-passwall/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
