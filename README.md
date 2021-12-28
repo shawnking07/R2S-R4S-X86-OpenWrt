@@ -1,7 +1,3 @@
-<p align="center">
-<img width="768" src="https://raw.githubusercontent.com/QiuSimons/Others/master/YAOF.png" >
-</p>
-
 [![R2S-OpenWrt](https://github.com/shawnking07/YAOF/actions/workflows/R2S-OpenWrt.yml/badge.svg)](https://github.com/shawnking07/YAOF/actions/workflows/R2S-OpenWrt.yml)
 [![R2C-OpenWrt](https://github.com/shawnking07/YAOF/actions/workflows/R2C-OpenWrt.yml/badge.svg)](https://github.com/shawnking07/YAOF/actions/workflows/R2C-OpenWrt.yml)
 [![R4S-OpenWrt](https://github.com/shawnking07/YAOF/actions/workflows/R4S-OpenWrt.yml/badge.svg)](https://github.com/shawnking07/YAOF/actions/workflows/R4S-OpenWrt.yml)
