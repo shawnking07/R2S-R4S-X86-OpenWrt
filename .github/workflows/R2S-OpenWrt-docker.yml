@@ -1,8 +1,9 @@
-name: R2C-OpenWrt
+name: R2S-OpenWrt
 
 on:
 #  schedule:
 #    - cron: 5 6 * * 0
+  workflow_dispatch:
   watch:
     types: started
 
@@ -72,8 +73,9 @@ jobs:
     - name: Make Config
       run: |
         cd openwrt
-        mv ../SEED/R2C/config.seed .config
+        mv ../SEED/R2S/config.seed .config
         #echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
+        /bin/bash add_docker.sh
         make defconfig
     - name: Get Architecture
       working-directory: ${{ github.workspace }}/openwrt
@@ -120,9 +122,8 @@ jobs:
         gzip -d *.gz && exit 0
         gzip --best *.img
         ls -Ahl
-        sha256sum openwrt*r2c* | tee R2C-sk07-$(date +%Y-%m-%d)-${{ env.latest_release }}.sha256sum
-        zip R2C-sk07-$(date +%Y-%m-%d)-${{ env.latest_release }}-ext4.zip *r2c*ext4*
-        zip R2C-sk07-$(date +%Y-%m-%d)-${{ env.latest_release }}-sfs.zip *r2c*squashfs*
+        sha256sum openwrt*r2s* | tee R2S-sk07-$(date +%Y-%m-%d)-${{ env.latest_release }}.sha256sum
+        zip R2S-sk07-docker-$(date +%Y-%m-%d)-${{ env.latest_release }}-ext4.zip *r2s*ext4*
         ls -Ahl
     - name: Upload artifact
       uses: actions/upload-artifact@main
