@@ -408,6 +408,7 @@ wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Mak
 
 # 翻译及部分功能优化
 svn co https://github.com/QiuSimons/OpenWrt-Add/trunk/addition-trans-zh package/lean/lean-translate
+sed -i '107 a chmod -R +x /etc/hotplug.d' package/lean/lean-translate/files/zzz-default-settings
 
 ### 最后的收尾工作 ###
 # Lets Fuck
