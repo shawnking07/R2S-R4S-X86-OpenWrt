@@ -182,8 +182,8 @@ svn co https://github.com/QiuSimons/slim-wrt/branches/main/slimapps/application/
 NEW_IP_CHECKER=$'curl --location --request GET \'https://forge.speedtest.cn/api/location/info\' | grep -o \'"full_ip":\s*"[^"]*\' | grep -o \'[^"]*$\''
 sed -i "s,curl -s https://api.ipify.org,$NEW_IP_CHECKER," package/new/luci-app-boostupnp/root/usr/sbin/boostupnp.sh
 unset NEW_IP_CHECKER
-rm -rf ./feeds/packages/net/miniupnpd
-svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+#rm -rf ./feeds/packages/net/miniupnpd
+#svn co https://github.com/openwrt/packages/branches/openwrt-21.02/net/miniupnpd feeds/packages/net/miniupnpd
 # ChinaDNS
 git clone -b luci --depth 1 https://github.com/QiuSimons/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
