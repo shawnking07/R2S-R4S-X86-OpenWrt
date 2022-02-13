@@ -263,8 +263,6 @@ popd
 git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git package/new/luci-app-oled
 # OpenClash
 git clone --single-branch --depth 1 -b dev https://github.com/vernesong/OpenClash.git package/new/luci-app-openclash
-# adjust booting order
-sed -i 's/START=99/START=97/g' package/new/luci-app-openclash/luci-app-openclash/root/etc/init.d/openclash
 # 花生壳内网穿透
 svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/luci-app-phtunnel package/new/luci-app-phtunnel
 svn co https://github.com/teasiu/dragino2/trunk/devices/common/diy/package/teasiu/phtunnel package/new/phtunnel
