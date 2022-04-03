@@ -153,9 +153,6 @@ svn export https://github.com/immortalwrt/immortalwrt/branches/master/tools/upx 
 svn export https://github.com/immortalwrt/immortalwrt/branches/master/tools/ucl tools/ucl
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
-# 更换 golang 版本
-rm -rf ./feeds/packages/lang/golang
-svn export https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
 # 访问控制
 svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-accesscontrol package/lean/luci-app-accesscontrol
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-control-weburl package/new/luci-app-control-weburl
@@ -167,7 +164,7 @@ svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby packag
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/new/luci-app-adguardhome
 rm -rf ./feeds/packages/net/adguardhome
 svn export https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
-sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
+#sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
 sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 # Argon 主题
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
@@ -177,8 +174,6 @@ rm -rf ./package/new/luci-theme-argon/htdocs/luci-static/argon/background/README
 #git checkout 3b15d06
 #popd
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git package/new/luci-app-argon-config
-# luci-app-easymesh
-git clone -b master --depth 1 https://github.com/ntlf9t/luci-app-easymesh.git package/lean/luci-app-easymesh
 # MAC 地址与 IP 绑定
 svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-arpbind feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
