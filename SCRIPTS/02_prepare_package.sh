@@ -13,13 +13,7 @@ sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqba
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
-# AutoCore
-sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/lean/autocore/files/generic/luci-mod-status-autocore.json
-
 ### 获取额外的 LuCI 应用、主题和依赖 ###
-# 更换 golang 版本
-rm -rf ./feeds/packages/lang/golang
-svn export https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
 # 访问控制
 svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-accesscontrol package/lean/luci-app-accesscontrol
 svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-control-weburl package/new/luci-app-control-weburl
@@ -95,12 +89,6 @@ svn export https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns packag
 svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 # 流量监管
 svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-netdata package/lean/luci-app-netdata
-# 上网 APP 过滤
-git clone -b master --depth 1 https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
-pushd package/new/OpenAppFilter
-wget -qO - https://github.com/QiuSimons/OpenAppFilter-destan19/commit/9088cc2.patch | patch -p1
-wget https://destan19.github.io/assets/oaf/open_feature/feature-06-18.cfg -O ./open-app-filter/files/feature.cfg
-popd
 # OLED 驱动程序
 git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git package/new/luci-app-oled
 # OpenClash
