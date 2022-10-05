@@ -47,10 +47,6 @@ svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper p
 # MentoHUST
 git clone --depth 1 https://github.com/BoringCat/luci-app-mentohust package/new/luci-app-mentohust
 git clone --depth 1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/new/MentoHUST
-# Mosdns
-svn export https://github.com/QiuSimons/openwrt-mos/trunk/mosdns package/new/mosdns
-svn export https://github.com/QiuSimons/openwrt-mos/trunk/luci-app-mosdns package/new/luci-app-mosdns
-svn export https://github.com/QiuSimons/openwrt-mos/trunk/v2ray-geodata package/new/v2ray-geodata
 # 流量监管
 svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-netdata package/lean/luci-app-netdata
 # OLED 驱动程序
