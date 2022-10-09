@@ -80,7 +80,7 @@ jobs:
       run: |
         TARGET_DEVICE_ARCH="$(grep "^CONFIG_TARGET_.*_.*=y$" ".config" | head -n 1 | sed 's/^CONFIG_TARGET_//g' | awk -F '_' '{print $1}')"
         echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
-        echo "latest_release=v21.02.3" >>$GITHUB_ENV
+        echo "latest_release=v21.02" >>$GITHUB_ENV
     - name: Cache
       uses: klever1988/cachewrtbuild@test
       with:
