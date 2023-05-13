@@ -50,10 +50,6 @@ jobs:
         /bin/bash 02_prepare_package.sh
         /bin/bash 02_target_only.sh
         /bin/bash 04_remove_upx.sh
-    - name: Convert Translation
-      run: |
-        cd openwrt
-        /bin/bash 03_convert_translation.sh
     - name: Add ACL
       run: |
         cd openwrt
