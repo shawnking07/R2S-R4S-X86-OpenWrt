@@ -60,6 +60,8 @@ git clone -b master --depth 1 https://github.com/brvphoenix/wrtbwmon.git package
 git clone -b master --depth 1 https://github.com/brvphoenix/luci-app-wrtbwmon.git package/new/luci-app-wrtbwmon
 # 迅雷快鸟宽带加速
 git clone --depth 1 https://github.com/kiddin9/luci-app-xlnetacc.git package/lean/luci-app-xlnetacc
+# airsane
+git clone --depth 1 https://github.com/shawnking07/AirSane-openwrt.git package/new/airsane
 
 
 ### 最后的收尾工作 ###
@@ -71,6 +73,9 @@ sed -i 's/16384/65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # default ip address
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+
+# cups config
+sed -i 's/192.168.1.1/192.168.10.1/g' feeds/packages/utils/cups/files/etc/cups/cupsd.conf
 
 # 生成默认配置及缓存
 rm -rf .config
