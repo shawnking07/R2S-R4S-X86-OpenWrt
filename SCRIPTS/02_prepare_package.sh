@@ -48,7 +48,7 @@ git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git packa
 # OpenClash
 git clone --single-branch --depth 1 -b dev https://github.com/vernesong/OpenClash.git package/new/luci-app-openclash
 # passwall2
-git clone --single-branch --depth 1 -b packages https://github.com/xiaorouji/openwrt-passwall.git package/new/openwrt-passwall
+git clone --single-branch --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages.git package/new/openwrt-passwall-packages
 svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/new/luci-app-passwall2
 wget -P package/new/luci-app-passwall2/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
 chmod -R 755 ./package/new/luci-app-passwall2/move_2_services.sh
