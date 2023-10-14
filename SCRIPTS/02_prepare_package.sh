@@ -9,6 +9,11 @@ clear
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
+# 广告过滤 AdGuard
+git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/new/luci-app-adguardhome
+rm -rf ./feeds/packages/net/adguardhome
+cp -rf ../openwrt_pkg_ma/net/adguardhome ./feeds/packages/net/adguardhome
+sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
 # Argon 主题
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
 wget -P package/new/luci-theme-argon/htdocs/luci-static/argon/background/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/5808303.jpg
