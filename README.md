@@ -1,4 +1,4 @@
-[![Build - OpenWrt](https://github.com/shawnking07/YAOF/actions/workflows/R2S-OpenWrt.yml/badge.svg)](https://github.com/shawnking07/YAOF/actions/workflows/Build-OpenWrt.yml)
+[![Build - OpenWrt](https://github.com/shawnking07/YAOF/actions/workflows/Build-OpenWrt.yml/badge.svg)](https://github.com/shawnking07/YAOF/actions/workflows/Build-OpenWrt.yml)
 
 
 ### Features
