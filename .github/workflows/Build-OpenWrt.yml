@@ -140,7 +140,7 @@ jobs:
         allowUpdates: true
         prerelease: false
         tag: ${{ env.latest_release }}
-        commit: 23.05
+        commit: 21.02.7
         replacesArtifacts: true
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ./artifact/*.zip
