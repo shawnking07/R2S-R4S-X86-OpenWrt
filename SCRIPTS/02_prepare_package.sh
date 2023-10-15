@@ -58,6 +58,9 @@ popd
 pushd package/new/luci-app-passwall2
 sed -i 's,default n,default y,g' Makefile
 popd
+# update Golang version
+sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.21/g' feeds/packages/lang/golang/golang/Makefile
+sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=2/g' feeds/packages/lang/golang/golang/Makefile
 # 网络唤醒
 svn export https://github.com/zxlhhyccc/bf-package-master/trunk/zxlhhyccc/luci-app-services-wolplus package/new/luci-app-services-wolplus
 # 流量监视
