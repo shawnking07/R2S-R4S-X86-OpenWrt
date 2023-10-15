@@ -18,8 +18,24 @@ jobs:
       run: |
         echo -e "Total CPU cores\t: $(nproc)"
         cat /proc/cpuinfo | grep 'model name'
+        cpu_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
+        if [[ ! "$cpu_name" =~ "8370C" ]]; then
+        echo "CPU不为8370C，性能不足，停止执行命令"
+        exit 1
+        else
+        echo "CPU为8370C，继续执行命令"
         ulimit -a
-
+        fi
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        swap-size-mb: 512
+        temp-reserve-mb: 100
+        root-reserve-mb: 2048
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        remove-codeql: 'true'
     - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -64,7 +80,7 @@ jobs:
       run: |
         TARGET_DEVICE_ARCH="$(grep "^CONFIG_TARGET_.*_.*=y$" ".config" | head -n 1 | sed 's/^CONFIG_TARGET_//g' | awk -F '_' '{print $1}')"
         echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
-        echo "latest_release=v21.02.6" >>$GITHUB_ENV
+        echo "latest_release=v21.02.7" >>$GITHUB_ENV
     - name: Cache
       uses: HiGarfield/cachewrtbuild@main
       with:
