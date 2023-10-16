@@ -6,6 +6,9 @@ on:
   watch:
     types: started
 
+env:
+  latest_release: v21.02.7
+
 jobs:
   build:
     permissions:
@@ -16,10 +19,13 @@ jobs:
         include:
           - build_target: R2C
             build_name: r2c
+            build_arch_suffix: 3328
           - build_target: R2S
             build_name: r2s
+            build_arch_suffix: 3328
           - build_target: R4S
             build_name: r4s
+            build_arch_suffix: 3399
     runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
 
@@ -95,8 +101,7 @@ jobs:
       working-directory: ${{ github.workspace }}/openwrt
       run: |
         TARGET_DEVICE_ARCH="$(grep "^CONFIG_TARGET_.*_.*=y$" ".config" | head -n 1 | sed 's/^CONFIG_TARGET_//g' | awk -F '_' '{print $1}')"
-        echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-" >>$GITHUB_ENV
-        echo "latest_release=v21.02.7" >>$GITHUB_ENV
+        echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}-${{ matrix.build_arch_suffix }}" >>$GITHUB_ENV
     - name: Cache
       uses: HiGarfield/cachewrtbuild@main
       with:
@@ -143,9 +148,7 @@ jobs:
         allowUpdates: true
         prerelease: false
         tag: ${{ env.latest_release }}
-        commit: 21.02.7
         replacesArtifacts: true
-        token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ./artifact/*.zip
     - name: Print Disk Space After
       run: df -h
