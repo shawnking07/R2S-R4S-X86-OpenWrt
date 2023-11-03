@@ -89,6 +89,7 @@ jobs:
         cd openwrt
         cp -rf ../SEED/${{ matrix.build_target }}/config.seed .config
         # /bin/bash 07_fw3.sh
+        /bin/bash 07_enable_eBPF.sh
     - name: Add ACL
       run: |
         cd openwrt
