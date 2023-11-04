@@ -61,6 +61,7 @@ popd
 # update Golang version
 sed -i 's/GO_VERSION_MAJOR_MINOR:=.*/GO_VERSION_MAJOR_MINOR:=1.21/g' feeds/packages/lang/golang/golang/Makefile
 sed -i 's/GO_VERSION_PATCH:=.*/GO_VERSION_PATCH:=3/g' feeds/packages/lang/golang/golang/Makefile
+sed -i 's/PKG_HASH:=.*/PKG_HASH:=186f2b6f8c8b704e696821b09ab2041a5c1ee13dcbc3156a13adcf75931ee488/g' feeds/packages/lang/golang/golang/Makefile
 # 网络唤醒
 svn export https://github.com/zxlhhyccc/bf-package-master/trunk/zxlhhyccc/luci-app-services-wolplus package/new/luci-app-services-wolplus
 # 流量监视
