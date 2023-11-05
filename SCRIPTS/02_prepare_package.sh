@@ -446,6 +446,9 @@ cp -rf ../OpenWrt-Add/fuck ./package/base-files/files/usr/bin/fuck
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-5.15
 
+# default ip address
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+
 ### Shortcut-FE 部分 ###
 # Patch Kernel 以支持 Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
