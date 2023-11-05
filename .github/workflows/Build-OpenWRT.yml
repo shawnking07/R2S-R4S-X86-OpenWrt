@@ -7,7 +7,7 @@ on:
     types: started
 
 env:
-  latest_release: v21.02.7
+  latest_release: v23.05.0
 
 jobs:
   build:
