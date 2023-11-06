@@ -296,6 +296,7 @@ cp -rf ../passwall_pkg/pdnsd-alt ./package/new/pdnsd-alt
 cp -rf ../OpenWrt-Add/trojan-plus ./package/new/trojan-plus
 cp -rf ../passwall_pkg/xray-plugin ./package/new/xray-plugin
 cp -rf ../passwall_pkg/dns2tcp ./package/new/dns2tcp
+cp -rf ../passwall_pkg/simple-obfs ./package/new/simple-obfs
 cp -rf ../passwall_pkg/shadowsocks-rust ./package/new/shadowsocks-rust
 cp -rf ../passwall_pkg/shadowsocksr-libev ./package/new/shadowsocksr-libev
 # Passwall 白名单
