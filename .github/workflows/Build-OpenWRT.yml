@@ -74,7 +74,7 @@ jobs:
     - name: Prepare Mixedwrt
       run: |
         sudo chown -R runner:runner /home/runner/work/YAOF
-        cp -r ./SCRIPTS/R2S/. ./SCRIPTS/
+        cp -r ./SCRIPTS/${{ matrix.build_target }}/. ./SCRIPTS/
         cp -r ./SCRIPTS/. ./
         /bin/bash 01_get_ready.sh
     - name: Prepare Package
