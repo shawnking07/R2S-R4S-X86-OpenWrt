@@ -4,4 +4,4 @@
 ### Features
 
 - Based on [QiuSimons - YAOF](https://github.com/QiuSimons/YAOF)
-- ImmortalWrt 21.02.0. Default admin address 192.168.10.1
+- ImmortalWrt 23.05. Default admin address 192.168.10.1
