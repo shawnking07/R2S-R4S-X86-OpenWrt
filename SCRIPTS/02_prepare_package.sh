@@ -58,8 +58,6 @@ popd
 pushd package/new/luci-app-passwall2
 sed -i 's,default n,default y,g' Makefile
 popd
-# update Golang version
-curl https://raw.githubusercontent.com/immortalwrt/packages/openwrt-23.05/lang/golang/golang/Makefile -o feeds/packages/lang/golang/golang/Makefile
 # 网络唤醒
 svn export https://github.com/zxlhhyccc/bf-package-master/trunk/zxlhhyccc/luci-app-services-wolplus package/new/luci-app-services-wolplus
 # 流量监视
