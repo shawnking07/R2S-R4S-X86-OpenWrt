@@ -68,7 +68,7 @@ git clone --depth 1 https://github.com/kiddin9/luci-app-xlnetacc.git package/lea
 # airsane
 git clone --depth 1 https://github.com/shawnking07/AirSane-openwrt.git package/new/airsane
 # daed
-git clone https://github.com/QiuSimons/luci-app-daed package/new/luci-app-dae
+git clone https://github.com/QiuSimons/luci-app-daed-next package/daed-next
 git clone https://github.com/sbwml/v2ray-geodata package/new/v2ray-geodata
 echo '
 define KernelPackage/xdp-sockets-diag
