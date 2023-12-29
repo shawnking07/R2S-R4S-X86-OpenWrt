@@ -136,7 +136,7 @@ CONFIG_PACKAGE_xray-geodata=y
 CONFIG_PACKAGE_cups=y
 #CONFIG_PACKAGE_airsaned=y
 CONFIG_PACKAGE_tailscale=y
-CONFIG_PACKAGE_luci-app-daed-next=y
+CONFIG_PACKAGE_luci-app-daed=y
 
 ### THEME ###
 CONFIG_PACKAGE_luci-theme-argon=y
